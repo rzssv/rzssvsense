@@ -27,6 +27,7 @@ namespace rzssvsense
         public bool aimbot = false;
         public bool silent = false;
         public bool aimOnTeam = false;
+        public bool triggerBot = false;
         public bool esp = false;
         public float aimbotFov = 50;
         public Vector4 circleColor = new Vector4(1, 1, 1, 1);
@@ -44,6 +45,7 @@ namespace rzssvsense
             ImGui.SliderFloat("Aimbot FOV", ref aimbotFov, 10, 300);
             if (ImGui.CollapsingHeader("FOV Colour"))
                 ImGui.ColorPicker4("##FovColour", ref circleColor);
+            ImGui.Checkbox("Triggerbot", ref triggerBot);
             ImGui.Checkbox("Bone ESP", ref esp);
             ImGui.SliderFloat("Bone Thickness", ref boneThickness, 4, 500);
             if (ImGui.CollapsingHeader("Team Colour"))

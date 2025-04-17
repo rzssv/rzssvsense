@@ -37,6 +37,8 @@ while (true)
     IntPtr cameraServices = swed.ReadPointer(localPlayerPawn, Offsets.m_pCameraServices);
     uint currentFov = swed.ReadUInt(cameraServices + Offsets.m_iFOV);
     bool isScoped = swed.ReadBool(localPlayerPawn, Offsets.m_bIsScoped);
+    Vector3 velocity = swed.ReadVec(localPlayerPawn, Offsets.m_vecAbsVelocity);
+    int speed = (int)Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y + velocity.Z * velocity.Z);
 
     if (!isScoped && currentFov != desiredFov)
     {
@@ -49,6 +51,7 @@ while (true)
     localPlayer.team = swed.ReadInt(localPlayer.pawnAddress, Offsets.m_iTeamNum);
     localPlayer.origin = swed.ReadVec(localPlayer.pawnAddress, Offsets.m_vOldOrigin);
     localPlayer.view = swed.ReadVec(localPlayer.pawnAddress, Offsets.m_vecViewOffset);
+    int entIndex = swed.ReadInt(localPlayerPawn, Offsets.m_iIDEntIndex);
     IntPtr entityList = swed.ReadPointer(client, Offsets.dwEntityList);
     IntPtr listEntry = swed.ReadPointer(entityList, 0x10);
     for (int i = 0; i < 64; i++)
@@ -135,6 +138,27 @@ while (true)
     {
         swed.WriteBytes(client, 0x524058, "F3 41 0F 11 00");
         swed.WriteBytes(client, 0x524067, "F3 41 0F 11 48 04");
+    }
+
+    //triggerbot
+    if (renderer.triggerBot)
+    {
+        if (entIndex != -1)
+        {
+            IntPtr currentPawn = swed.ReadPointer(listEntry, 0x78 * (entIndex & 0x1FF));
+            int team = swed.ReadInt(localPlayerPawn, Offsets.m_iIDEntIndex);
+            int entityTeam = swed.ReadInt(currentPawn, Offsets.m_iTeamNum);
+            if (team != entityTeam)
+            {
+                if (GetAsyncKeyState(Hotkey) < 0 && speed <= 35)
+                {
+                    swed.WriteInt(client, Offsets.attack, 65537);
+                    Thread.Sleep(10);
+                    swed.WriteInt(client, Offsets.attack, 256);
+                    Thread.Sleep(10);
+                }
+            }
+        }
     }
 
     

@@ -26,5 +26,8 @@ namespace rzssvsense
         public static int dwViewMatrix = 0x1A89130;
         public static int m_modelState = 0x170;
         public static int m_pGameSceneNode = 0x328;
+        public static int attack = 0x186C850;
+        public static int m_iIDEntIndex = 0x1458;
+        public static int m_vecAbsVelocity = 0x3F0;
     }
 }
