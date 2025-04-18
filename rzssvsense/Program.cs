@@ -3,6 +3,22 @@ using System.Runtime.InteropServices;
 using rzssvsense;
 using Swed64;
 
+[DllImport("User32.dll")]
+static extern IntPtr GetDC(IntPtr hwnd);
+
+[DllImport("User32.dll")]
+static extern int ReleaseDC(IntPtr hwnd, IntPtr dc);
+
+[DllImport("gdi32.dll")]
+static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
+IntPtr primary = GetDC(IntPtr.Zero);
+int DESKTOPVERTRES = 117;
+int DESKTOPHORZRES = 118;
+int actualPixelsX = GetDeviceCaps(primary, DESKTOPHORZRES);
+int actualPixelsY = GetDeviceCaps(primary, DESKTOPVERTRES);
+ReleaseDC(IntPtr.Zero, primary);
+
 Renderer renderer = new Renderer();
 Swed swed = new Swed("cs2");
 Thread renderThread = new Thread(renderer.Start().Wait);
@@ -18,7 +34,7 @@ const int Hotkey = 0x06;
 
 List<Entity> entities = new List<Entity>();
 Entity localPlayer = new Entity();
-Vector2 screen = new Vector2(1920, 1080);
+Vector2 screen = new Vector2(actualPixelsX, actualPixelsY);
 
 renderer.overlaySize = screen;
 
