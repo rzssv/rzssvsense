@@ -12,3 +12,5 @@ If you decide to use our software please remember that we do not gauruntee safte
 
 Compile in debug and x64 run executable and enjoy
 
+
+# Bhop is automatically on and can not be turned off ( working on fix )
