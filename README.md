@@ -1,6 +1,14 @@
-# rzssvsense
-garbage cheat menu i made with some guy on youtubes help
-bhop is automatically enabled
+# fishware 🐟💻
+Open source cs2 cheat from the Swed C# Tutorials. 
 
-## how to run
-open cs2 then build the vsproject i might make a release soon or not
+
+The goal yet is not to release a cheat but to learn how to create a game modification and reverse engineer games
+
+
+If you decide to use our software please remember that we do not gauruntee saftey of your account.
+
+
+# Important & How to Run 😼🚀
+
+Compile in debug and x64 run executable and enjoy
+
