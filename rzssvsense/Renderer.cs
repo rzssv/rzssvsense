@@ -11,7 +11,7 @@ namespace rzssvsense
 {
     public class Renderer : Overlay
     {
-        public Vector2 overlaySize = new Vector2(2560, 1440);
+        public Vector2 overlaySize = new Vector2(1920, 1080);
         Vector2 windowLocation = new Vector2(0, 0);
         public List<Entity> entitiesCopy = new List<Entity>();
         public Entity localPlayerCopy = new Entity();
@@ -21,7 +21,7 @@ namespace rzssvsense
         float boneThickness = 4;
         public bool thirdPerson = false;
         public bool bunnyHopping = false;
-        public int fov = 60;
+        public int fov = 90;
         public bool radar = false;
         public bool antiRecoil = false;
         public bool aimbot = false;
@@ -33,14 +33,14 @@ namespace rzssvsense
         public Vector4 circleColor = new Vector4(1, 1, 1, 1);
         protected override void Render()
         {
-            ImGui.Begin("rzssvsense");
-            ImGui.Checkbox("BHop", ref bunnyHopping);
-            ImGui.Checkbox("Third Person", ref thirdPerson);
+            ImGui.Begin("fishware");
+            ImGui.Checkbox("Bhop", ref bunnyHopping);
+            ImGui.Checkbox("Third Person (broken)", ref thirdPerson);
             ImGui.SliderInt("FOV", ref fov, 58, 140);
-            ImGui.Checkbox("Radar", ref radar);
-            ImGui.Checkbox("Disable Recoil", ref antiRecoil);
+            ImGui.Checkbox("Radar (broken)", ref radar);
+            ImGui.Checkbox("Disable Recoil(buggy)", ref antiRecoil);
             ImGui.Checkbox("Aimbot", ref aimbot);
-            ImGui.Checkbox("Silent Aim", ref silent);
+            ImGui.Checkbox("Silent Aim(buggy)", ref silent);
             ImGui.Checkbox("Aim On Teammates", ref aimOnTeam);
             ImGui.SliderFloat("Aimbot FOV", ref aimbotFov, 10, 300);
             if (ImGui.CollapsingHeader("FOV Colour"))

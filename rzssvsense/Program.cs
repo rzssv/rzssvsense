@@ -18,7 +18,7 @@ const int Hotkey = 0x06;
 
 List<Entity> entities = new List<Entity>();
 Entity localPlayer = new Entity();
-Vector2 screen = new Vector2(2560, 1440);
+Vector2 screen = new Vector2(1920, 1080);
 
 renderer.overlaySize = screen;
 
